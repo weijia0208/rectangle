@@ -4,15 +4,15 @@ $(function(){
       $btnCal = $('#calculate'),
       $perimeter = $('#perimeter'),
       $area = $('#area');
-$btnCal.click(function(){
-  var w = Number($width.val()),
-      h = Number($height.val());
+  $btnCal.click(function(){
+    var w = Number($width.val()),
+        h = Number($height.val());
 
-  var p = 2*(w+h),
-      a = w*h;
+    var p = 2*(w+h),
+        a = w*h;
 
-  $perimeter.val(p);
-  $area.val(a);
-});
+    $perimeter.val(p);
+    $area.val(a);
+  });
 
 });
