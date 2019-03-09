@@ -20,14 +20,26 @@ module.exports = function (grunt) {
       },
       src: '*.html'        
     },
+    mocha:{
+      options:{
+        run:true,
+        reporter:'Dot'
+      },
+      test:{
+        src:['test/index.html'],
+      }
+    }
 
   });
 
   grunt.loadNpmTasks('grunt-contrib-csslint');
   grunt.loadNpmTasks('grunt-htmlhint');
   grunt.loadNpmTasks('grunt-eslint');
+  grunt.loadNpmTasks('grunt-mocha');
+
           
   grunt.registerTask('default', ['htmlhint', 'csslint', 'eslint']);
+  grunt.registerTask('default',['mocha']);
 
 };
 
