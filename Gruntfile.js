@@ -44,6 +44,12 @@ module.exports = function (grunt) {
     },
     uglify:{
       'dist/rectangle.min.js':'./rectangle.js'
+    },
+    concat:{
+      js:{
+        src:['rectangle.js','calc.js'],
+        dest:'dist/bundle.js'
+      }
     }
 
   });
@@ -55,11 +61,12 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-htmlmin');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-concat');
 
           
   grunt.registerTask('lint', ['htmlhint', 'csslint', 'eslint']);
   grunt.registerTask('default',['mocha']);
-  grunt.registerTask('min',['htmlmin','cssmin','uglify']);
+  grunt.registerTask('min',['htmlmin','cssmin','uglify','concat']);
 
 };
 
