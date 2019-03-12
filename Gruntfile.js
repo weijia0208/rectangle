@@ -28,6 +28,22 @@ module.exports = function (grunt) {
       test:{
         src:['test/index.html'],
       }
+    },
+    htmlmin: {
+      options: {
+        collapseWhitespace: true,
+        preserveLineBreaks: false                                  
+      },
+      files: {
+        src: './index.html',
+        dest: 'dist/index.html'                      
+      }     
+    },
+    cssmin:{
+      'dist/rectangle.min.css':'./rectangle.css'
+    },
+    uglify:{
+      'dist/rectangle.min.js':'./rectangle.js'
     }
 
   });
@@ -36,10 +52,14 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-htmlhint');
   grunt.loadNpmTasks('grunt-eslint');
   grunt.loadNpmTasks('grunt-mocha');
+  grunt.loadNpmTasks('grunt-contrib-htmlmin');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
 
           
-  grunt.registerTask('default', ['htmlhint', 'csslint', 'eslint']);
+  grunt.registerTask('lint', ['htmlhint', 'csslint', 'eslint']);
   grunt.registerTask('default',['mocha']);
+  grunt.registerTask('min',['htmlmin','cssmin','uglify']);
 
 };
 
