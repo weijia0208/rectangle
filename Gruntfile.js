@@ -35,23 +35,42 @@ module.exports = function (grunt) {
         preserveLineBreaks: false                                  
       },
       files: {
-        src: './index.html',
+        src: 'dist/index.min.html',
         dest: 'dist/index.html'                      
       }     
     },
     cssmin:{
-      'dist/rectangle.min.css':'./rectangle.css'
+      'dist/rectangle.css':'./rectangle.css'
     },
     uglify:{
-      'dist/rectangle.min.js':'./rectangle.js'
+      release:{
+        files:{
+          'dist/bundle.min.js':'dist/bundle.js'
+        }
+      } 
     },
     concat:{
       js:{
-        src:['rectangle.js','calc.js'],
+        src:['./rectangle.js','./calc.js'],
         dest:'dist/bundle.js'
       }
-    }
-
+    },
+    copy:{
+      html:{
+        src:'./index.html',
+        dest:'./dist/index.min.html'
+      }
+    },
+    useminPrepare: {
+      html: 'index.html',
+      options: {
+        dest: 'dist'                
+      }        
+    },
+    usemin:{
+      html:['dist/index.min.html']
+    },
+    clean:['dist/bundle.js', '.tmp','dist/index.min.html']
   });
 
   grunt.loadNpmTasks('grunt-contrib-csslint');
@@ -62,11 +81,13 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-usemin');
+  grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-copy');
 
           
   grunt.registerTask('lint', ['htmlhint', 'csslint', 'eslint']);
   grunt.registerTask('default',['mocha']);
-  grunt.registerTask('min',['htmlmin','cssmin','uglify','concat']);
-
+  grunt.registerTask('min',['copy','cssmin','concat','uglify','useminPrepare','usemin','htmlmin','clean']);
 };
 
