@@ -4,13 +4,13 @@
   "description": "计算矩形周长和面积",
   "main": "rectangle.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 0"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/weijia0208/rectangle.git"
   },
-  "author": "",
+  "author": "weijia0208",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/weijia0208/rectangle/issues"
