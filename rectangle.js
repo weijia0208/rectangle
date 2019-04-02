@@ -7,7 +7,20 @@ $(function(){
       $heightValidation = $('#height-validation'),
       $area = $('#area'),
       isOk = false;
-  
+  $height.keypress(function(e){
+    if(/[abcdf-zABCDF-Z`~!@#$%^&*()=_+[\]{}|;:'",<>/?\\]/.test(e.key)){
+      e.preventDefault();
+    }
+    if(e.key === '.'){
+      if(e.target.value === '') e.preventDefault();
+
+      if(e.target.value.indexOf('.') !== -1){
+        e.preventDefault();
+      }else{
+        if(e.target.selectionStart === 0) e.preventDefault();
+      }
+    }
+  }); 
 
   $height.focusout(function(){
     var result = validation($height.val());
